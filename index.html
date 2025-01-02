@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>第N次DCのIG存活時間</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    #timer {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>第N次DCのIG存活時間</h1>
+  <p id="timer">計時中...</p>
+
+  <script>
+    // 設定起始時間（此處以 2025/01/02 12:00:00 為例）
+    const startTime = new Date("2025-01-02T12:00:00").getTime();
+
+    function updateTimer() {
+      // 取得現在時間
+      const currentTime = new Date().getTime();
+
+      // 計算經過的毫秒數
+      const elapsedMs = currentTime - startTime;
+
+      // 換算為秒
+      const totalSeconds = Math.floor(elapsedMs / 1000);
+
+      // 轉換成「幾分幾秒」
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+
+      // 顯示格式： X分Y秒
+      const timerText = `${minutes}分${seconds}秒`;
+
+      // 更新到網頁
+      document.getElementById("timer").textContent = timerText;
+    }
+
+    // 每秒更新一次
+    setInterval(updateTimer, 1000);
+
+    // 先立即更新一次
+    updateTimer();
+  </script>
+</body>
+</html>
